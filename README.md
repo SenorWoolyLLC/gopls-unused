@@ -11,9 +11,14 @@ You will first need BASH and [gopls](https://github.com/golang/tools/tree/master
 To run, clone the repo and run `./gopls-unused.bash find_all path/to/golang/code`.
 
 There are some more find-grained commands:
+
 ```
 ./gopls-unused.bash find_all_in_file path/to/golang/file.go
 ./gopls-unused.bash find_symbol_references_in_project path/to/symbol/file.go:1:1
 ```
+
+An ignore regex flag, eg: `IGNORE_REGEX='.*gen\.go' ./gopls-unused.bash find_all path/to/golang/code`.
+
+An CWD flag, eg: `CWD=path/to/golang/code ./gopls-unused.bash find_all`.
 
 And a debugging flag, eg: `DEBUG=1 ./gopls-unused.bash find_all path/to/golang/code`.
