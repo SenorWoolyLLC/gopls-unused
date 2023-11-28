@@ -5,7 +5,7 @@ function _get_symbols_in_file {
 
 function _find_all_go_files {
 	local path=$1
-	find "$GOPLS_UNUSED_ROOT/$path" -type f -name "*.go"
+	find "$CWD/$path" -type f -name "*.go"
 }
 
 function _get_references {

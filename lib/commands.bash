@@ -1,7 +1,7 @@
 function find_all {
 	local go_project_path=$1
 	local i=0
-	_pushd "$go_project_path"
+	_pushd "$CWD/$go_project_path"
 
 	files=$(_find_all_go_files "$go_project_path")
 	total=$(echo "$files" | wc -l)
@@ -37,7 +37,8 @@ function find_symbol_references_in_project {
 	if [[ $(_is_symbol_publically_exported "$symbol") == "true" ]]; then
 		location=$(_extract_location "$symbol_details")
 		references="$(_get_references "$file:$location")"
-		output="$file $symbol $location"
+		relative_file_path=$(echo "$file" | sed "s|$CWD/||g")
+		output="$relative_file_path $symbol $location"
 		if [ "$references" = "" ]; then
 			echo "🔴 $output"
 		else
