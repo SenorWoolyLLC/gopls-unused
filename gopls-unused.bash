@@ -2,10 +2,12 @@
 set -e
 
 export GOPLS_UNUSED_ROOT
+export CWD
 
 function_to_run=$1
 
 GOPLS_UNUSED_ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+CWD=$(pwd)
 
 function _includes_path {
 	echo "$GOPLS_UNUSED_ROOT"/lib
