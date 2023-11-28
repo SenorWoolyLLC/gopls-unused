@@ -55,6 +55,20 @@ function _is_go_test_file {
 	fi
 }
 
+function _matches_ignore_regex {
+	# First check if the IGNORE_REGEX is set
+	if [ "$IGNORE_REGEX" = "" ]; then
+		echo "false"
+		return
+	fi
+	local path=$1
+	if [[ "$path" =~ $IGNORE_REGEX ]]; then
+		echo "true"
+	else
+		echo "false"
+	fi
+}
+
 function _remove_test_files_from_references {
 	local paths_with_location=$1
 	local _is_test_file="false"

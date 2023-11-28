@@ -3,6 +3,7 @@ set -e
 
 export GOPLS_UNUSED_ROOT
 export CWD
+export IGNORE_REGEX
 
 function_to_run=$1
 
