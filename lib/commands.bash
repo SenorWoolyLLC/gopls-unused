@@ -9,10 +9,12 @@ function find_all {
 		i=$((i + 1))
 		_debug "Searching in file $i/$total for publically exported symbols"
 
-		if [ "$(_is_go_test_file "$file")" = "false" ]; then
-			find_all_in_file "$file"
-		else
+		if [ "$(_is_go_test_file "$file")" = "true" ]; then
 			_debug "Skipping Go test file: $file"
+		elif [ "$(_matches_ignore_regex "$file")" = "true" ]; then
+			_debug "Skipping file matching IGNORE_REGEX: $file"
+		else
+			find_all_in_file "$file"
 		fi
 	done
 
